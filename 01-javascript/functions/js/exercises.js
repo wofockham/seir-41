@@ -35,15 +35,15 @@ console.log( tellFortune(5, 'Tony', 'Glasgow', 'publican') );
 // - Call the function three times with different sets of values.
 // - Bonus: Add an additional argument to the function that takes the conversion rate of human to dog years.
 
-// TODO: bonus
-const calculateDogAge = function (age) {
-  const doggyAge = age * 7;
+// variadic
+const calculateDogAge = function (age, conversionRate=7) { // default parameter
+  const doggyAge = age * conversionRate;
   console.log( `Your doggie is ${ doggyAge } years old in dog years!` );
 };
 
 calculateDogAge(5);
 calculateDogAge(6);
-calculateDogAge(7);
+calculateDogAge(7, 5);
 
 
 
@@ -58,7 +58,6 @@ calculateDogAge(7);
 // - Call that function three times, passing in different values each time.
 // - Bonus: Accept floating point values for amount per day, and round the result to a round number.
 
-// TODO: bonus
 const calculateSupply = function (currentAge, amountPerDay) {
   const deathAge = 84;
 
@@ -66,7 +65,7 @@ const calculateSupply = function (currentAge, amountPerDay) {
   const yearsRemaining = deathAge - currentAge;
 
   const amountRequired = yearsRemaining * amountPerYear;
-  console.log(`You will need ${ amountRequired } to last you until the ripe old age of ${ deathAge }`);
+  console.log(`You will need ${ Math.ceil(amountRequired) } to last you until the ripe old age of ${ deathAge }`);
 };
 
 calculateSupply(36, 11);
@@ -86,11 +85,19 @@ calculateSupply(25, 14.3);
 // - Pass the radius to the function.
 // - Calculate the area based on the radius, and output "The area is NN".
 
-const radius = 1;
-const circumference = 2 * radius * Math.PI;
-console.log(`The circumference is ${ circumference }`);
-const area = Math.PI * radius * radius; // PI r^2
-console.log(`The area is ${ area }`);
+const calcCircumference = function (radius) {
+  const circumference = 2 * radius * Math.PI;
+  console.log(`The circumference is ${ circumference }`);
+}
+
+calcCircumference(1);
+
+const calcArea = function (radius) {
+  const area = Math.PI * radius * radius; // PI r^2
+  console.log(`The area is ${ area }`);
+}
+
+calcArea(1);
 
 // ## The Temperature Converter
 //
@@ -103,9 +110,18 @@ console.log(`The area is ${ area }`);
 //
 // Now store a fahrenheit temperature into a variable.
 // - Convert it to celsius and output "NN°F is NN°C."
-const currentTemperature = 20;
-const fahrenheit = (currentTemperature * 1.8) + 32;
-console.log(`${ currentTemperature }°C is ${ fahrenheit }°F`);
 
-const celsius = (fahrenheit - 32) / 1.8;
-console.log(`${ fahrenheit }°F is ${ celsius }°C.`);
+const celsiusToFahrenheit = function (celsius) {
+  const fahrenheit = (celsius * 1.8) + 32;
+  console.log(`${ celsius }°C is ${ fahrenheit }°F`);
+  return fahrenheit;
+};
+
+const fahrenheitToCelsius = function (fahrenheit) {
+  const celsius = (fahrenheit - 32) / 1.8;
+  console.log(`${ fahrenheit }°F is ${ celsius }°C.`);
+  return celsius;
+};
+
+// Sort of annoyingly clever:
+fahrenheitToCelsius( celsiusToFahrenheit(30) );
