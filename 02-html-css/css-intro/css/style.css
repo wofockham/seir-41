@@ -1,0 +1,51 @@
+/* comments */
+
+/*
+selector {
+  property: value;
+  other-property: other-value;
+}
+
+*/
+
+
+/* <Tagname> selector */
+body {
+  background-color: aliceblue;
+}
+
+h1 {
+  text-align: right;
+  padding: 35px;
+}
+
+a {
+  color: #f998f3; /* Hexcodes: #rrggbb 00-ff (hexidecimal) */
+}
+
+/* More complicated selectors */
+
+/* Select multiple elements at once */
+h1, h2, h3, h4, h5, h6 {
+  background-color: white;
+  text-align: center;
+  text-shadow: 0 0 5px red;
+}
+
+img {
+  width:49%;
+}
+
+p {
+  color: green;
+}
+
+/* Select all elements with a particular class */
+p.fancy {
+  text-decoration: underline;
+}
+
+/* Select a single element by ID */
+#second {
+  font-size: 200%;
+}
