@@ -1,0 +1,59 @@
+@import url('https://fonts.googleapis.com/css2?family=Oxygen&display=swap');
+
+body {
+  background-color: #222; /* #123 => #112233 */
+  padding: 0;
+  margin: 0;
+  font-family: 'Oxygen', sans-serif;
+}
+
+.container {
+  max-width: 960px; /* Lazy responsive container */
+  background-color: #ccc;
+  margin: 0 auto; /* horizontal centering */
+  padding: 1em; /* chunky pixels */
+  border-bottom-left-radius: 1em;
+  border-bottom-right-radius: 1em;
+}
+
+nav {
+  text-align: right;
+}
+
+nav a {
+  color: green;
+}
+
+h1 {
+  text-transform: uppercase;
+  text-align: center;
+  background-color: #222;
+  color: #ccc;
+  font-size: 400%;
+  padding: 0.5em;
+}
+
+main {
+  display: inline-block;
+  width: 75%;
+}
+
+main img {
+  margin: 0 auto;
+  display: block; /* Can't set a margin on display inline (the default for images) */
+  border: 1px solid black;
+}
+
+aside {
+  display: inline-block;
+  width: 21%; /* 75% + 21% == 100% */
+  vertical-align: top;
+  background-color: #cfc;
+  padding: 1em;
+  border-radius: 0.5em;
+  box-shadow: 0 0 15px black;
+}
+
+aside ul {
+  padding-left: 16px;
+}
