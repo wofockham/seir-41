@@ -19,7 +19,8 @@ end
 
 # CREATE
 post '/butterflies' do
-  "creating new butterfly"
+  query_db "INSERT INTO butterflies (name, family, image) VALUES ('#{ params[:name] }', '#{ params[:family] }', '#{ params[:image] }')"
+  redirect to('/butterflies') # GET
 end
 
 # SHOW
