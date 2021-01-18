@@ -1,0 +1,12 @@
+body {
+  background-color: purple;
+  color: white;
+}
+
+img {
+  border-radius: 100%;
+}
+
+nav a {
+  color: white;
+}
