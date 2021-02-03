@@ -1,6 +1,6 @@
 console.log( _.VERSION );
 
-const nums = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+const nums = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11];
 
 // .each ///////////////////////////////////////////////////////////////////////
 // es5 or greater: .forEach
@@ -26,14 +26,49 @@ _(sales).each(function (total, month) {
 });
 
 // .map ////////////////////////////////////////////////////////////////////////
-// const result = [];
-// _(nums).each(function (n) {
-//   result.push( 19 * n );
-// });
-//
-// console.log( result );
+const byNineteen = function (n) {
+  return n * 19;
+}
 
-const result = _(nums).map(function (n) {
-  return 19 * n;
-});
+const result = _(nums).map(byNineteen);
 console.log( result );
+
+// .map with objects ///////////////////////////////////////////////////////////
+const salesInfo = _(sales).map(function (total, month) {
+  return `${ month } has ${ total } sales.`;
+});
+
+// .reduce() ///////////////////////////////////////////////////////////////////
+const total = _(nums).reduce(function (runningTotal, n) {
+  // console.log(`runningTotal: ${ runningTotal }, n: ${ n }, returning: ${ runningTotal + n }`);
+  return runningTotal + n;
+});
+console.log(total);
+
+// .reduce() also works for objects ////////////////////////////////////////////
+
+// .find() /////////////////////////////////////////////////////////////////////
+const divisibleByFive = function (candidate) {
+  console.log(`Considering: ${ candidate }, returning: ${ candidate % 5 === 0 }`);
+  return candidate % 5 === 0;
+}
+
+const firstMultipleOfFive = _(nums).find( divisibleByFive );
+console.log( firstMultipleOfFive );
+
+// .filter() ///////////////////////////////////////////////////////////////////
+const allMultiplesOfFive = _(nums).filter( divisibleByFive );
+console.log(allMultiplesOfFive);
+
+// .reject() ///////////////////////////////////////////////////////////////////
+const notDivisibleByFive = _(nums).reject( divisibleByFive );
+console.log( notDivisibleByFive );
+
+// .pluck() ////////////////////////////////////////////////////////////////////
+const bros = [
+  {name: 'Groucho', instrument: 'guitar', disposition: 'surly'},
+  {name: 'Harpo', instrument: 'harp', disposition: 'sweet'},
+  {name: 'Chico', instrument: 'piano', disposition: 'sleazy'}
+];
+
+console.log( _(bros).pluck('disposition') );
