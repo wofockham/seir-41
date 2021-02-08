@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import axios from 'axios';
 
 class SearchForm extends Component {
   constructor() {
@@ -17,20 +16,7 @@ class SearchForm extends Component {
 
   _handleSubmit(event) {
     event.preventDefault(); // prevent the form being submitted to some server.
-    console.log('searching for', this.state.query);
-
-    const flickrURL = 'https://api.flickr.com/services/rest';
-    const flickrParams = {
-      method: 'flickr.photos.search',
-      api_key: '2f5ac274ecfac5a455f38745704ad084',
-      text: this.state.query,
-      format: 'json',
-      nojsoncallback: 1 // why? read the Flickrs docs if you're terribly bored.
-    };
-
-    axios(flickrURL, { params: flickrParams }).then(function (output) {
-      console.log(output);
-    });
+    this.props.onSubmit(this.state.query); // fetchImages (defined in FlickrSearch)
   }
 
   render() {
