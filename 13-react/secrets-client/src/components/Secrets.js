@@ -1,31 +1,42 @@
 import React, { Component } from 'react';
+import axios from 'axios';
+
+const SERVER_URL = 'http://localhost:3000/secrets.json';
 
 class Secrets extends Component {
   constructor() {
     super();
     this.state = {
-      secrets: [
-        { id: 1, content: 'Secret about eggs' },
-        { id: 2, content: 'Secret about icecream' },
-        { id: 3, content: 'Secret about rubber gloves' },
-        { id: 5, content: 'Secret about shoplifting' },
-      ]
+      secrets: []
     }
+
+    // Polling for "live" updating:
+    const fetchSecrets = () => {
+      axios.get(SERVER_URL).then((response) => {
+        this.setState({secrets: response.data});
+        setTimeout(fetchSecrets, 4000); // recursive alternative to setInterval
+      });
+    };
+
+    fetchSecrets();
+  }
+
+  saveSecret(content) {
+    axios.post(SERVER_URL, {content: content}).then((response) => {
+      console.log(response);
+    })
   }
 
   render() {
+    console.log('Secrets render()');
     return (
       <div>
-        <SecretForm />
+        <SecretForm onSubmit={ this.saveSecret } />
         <SecretsList secrets={ this.state.secrets } />
       </div>
     );
   }
 }
-
-// class is good when you have state: this.setState
-
-// detect when the form is submitted and do something with the state (???)
 
 class SecretForm extends Component {
   constructor() {
@@ -41,7 +52,7 @@ class SecretForm extends Component {
 
   _handleSubmit(event) {
     event.preventDefault();
-    console.log('doing something with this secret', this.state.content);
+    this.props.onSubmit(this.state.content);
   }
 
   render() {
@@ -57,6 +68,7 @@ class SecretForm extends Component {
 // functional component: quick and dirty if you don't need state
 // NO THIS
 const SecretsList = (props) => {
+  console.log('SecretsList render()');
   return (
     <div>
       { props.secrets.map( (s) => <p key={ s.id }>{ s.content }</p> ) }
