@@ -10,6 +10,8 @@ class Secrets extends Component {
       secrets: []
     }
 
+    this.saveSecret = this.saveSecret.bind(this);
+
     // Polling for "live" updating:
     const fetchSecrets = () => {
       axios.get(SERVER_URL).then((response) => {
@@ -23,8 +25,9 @@ class Secrets extends Component {
 
   saveSecret(content) {
     axios.post(SERVER_URL, {content: content}).then((response) => {
-      console.log(response);
-    })
+      // Add the new secret to the existing collection of secrets in `state`.
+      this.setState({secrets: [...this.state.secrets, response.data]});
+    });
   }
 
   render() {
@@ -53,12 +56,13 @@ class SecretForm extends Component {
   _handleSubmit(event) {
     event.preventDefault();
     this.props.onSubmit(this.state.content);
+    this.setState({content: ''}); // reset
   }
 
   render() {
     return (
       <form onSubmit={ this._handleSubmit }>
-        <textarea onChange={ this._handleChange } />
+        <textarea onChange={ this._handleChange } value={ this.state.content } />
         <input type="submit" value="Tell" />
       </form>
     )
