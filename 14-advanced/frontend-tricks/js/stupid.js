@@ -27,6 +27,5 @@ $(document).ready(() => {
     $bubble.animate({top: -200}, 2500, () => {
       $bubble.remove(); // this callback runs when the animation is complete.
     });
-
   })
 });
