@@ -34,3 +34,13 @@ exports.update_a_word = (req, res) => {
     }
   );
 };
+
+exports.delete_a_word = (req, res) => {
+  Vocab.deleteOne({ _id: req.params.wordId }, (err) => {
+    if (err) res.send(err);
+    res.json({
+      message: 'Word successfully deleted',
+      _id: req.params.wordId
+    });
+  })
+};
