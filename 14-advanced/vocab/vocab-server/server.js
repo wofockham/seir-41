@@ -9,7 +9,7 @@ const routes = require('./api/routes/vocabRoutes');
 mongoose.Promise = global.Promise;
 mongoose.set('useFindAndModify', false);
 mongoose.connect(
-  '...', // TODO
+  `mongodb+srv://theBlade:${ process.env.MONGOPW }@cluster0.i0cbj.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`,
   { useNewUrlParser: true }
 );
 
