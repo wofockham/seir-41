@@ -11,6 +11,13 @@
       </thead>
 
       <tbody>
+        <tr v-for="(word, i) in words" :key="i">
+          <td>{{ word.english }}</td>
+          <td>{{ word.german }}</td>
+          <td width="75" class="center aligned">Show</td>
+          <td width="75" class="center aligned">Edit</td>
+          <td width="75" class="center aligned">Destroy</td>
+        </tr>
       </tbody>
     </table>
   </div>
