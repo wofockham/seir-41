@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const baseURL = 'http://localhost:3000/words/';
-// const baseURL = 'http://921f6638c369.ngrok.io/words/'; // Joel's server
+// const baseURL = 'http://dd4bf08d797c.ngrok.io/words/'; // Joel's server
 
 // Higher order function to handle errors in just one way.
 const handleError = (fn) => (...params) =>
